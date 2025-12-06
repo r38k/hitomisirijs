@@ -4,6 +4,15 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+html.dark {
+    background-color: #0d0950;
+    color: #fff;
+}
+
+.dark .nav-links a {
+    color: #fff;
+}
+ 
 :root {
 	--accent: #2337ff;
 	--accent-dark: #000d8a;

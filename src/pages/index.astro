@@ -1,23 +1,9 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer/Footer.astro";
-import Header from "../components/Header/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-
 import { Image } from "astro:assets";
 import ahiru from "../assets/face.webp";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<!doctype html>
-<html lang="ja">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <Image src={ahiru} alt="頭に箒が乗ったアヒルの絵" />
-    </main>
-    <Footer />
-  </body>
-</html>
+<BaseLayout>
+  <Image src={ahiru} alt="頭に箒が乗ったアヒルの絵" />
+</BaseLayout>

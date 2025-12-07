@@ -1,11 +1,9 @@
 ---
-title: 'ばかじゃないのに(Stay Foolish)'
+title: 'Hello World'
 pubDate: 2025-12-05
-description: 'ずっと真夜中でいいのに。の「ばかじゃないのに」という曲について'
+description: 'Sample Post'
 author: 'r38k'
-tags: ["ずっと真夜中でいいのに。", "陶芸"]
+tags: []
 ---
-
-# test
 
 Hello World.

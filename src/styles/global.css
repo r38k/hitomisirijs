@@ -7,15 +7,7 @@
 /* Import centralized theme variables */
 @import './theme.css';
 
-html.dark {
-    background-color: #0d0950;
-    color: #fff;
-}
-
-.dark .nav-links a {
-    color: #fff;
-}
- 
+/* Additional legacy variables for blog post styles */
 :root {
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
@@ -43,17 +35,18 @@ html.dark {
 	font-display: swap;
 }
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: var(--font-sans);
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
+	background: var(--gradient-bg);
+	background-attachment: fixed;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
+	color: var(--text-primary);
 	font-size: 20px;
 	line-height: 1.7;
+	min-height: 100vh;
 }
 main {
 	width: 720px;

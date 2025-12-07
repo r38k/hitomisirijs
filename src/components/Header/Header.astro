@@ -68,7 +68,7 @@ const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
             data-jp={item.jp}
           >
             {/* Tech indicator dot */}
-            <span class="indicator-dot"></span>
+            <span class="indicator-dot indicator-dot--sm"></span>
 
             <span class="label">{item.label}</span>
 
@@ -179,15 +179,7 @@ const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
     transform: translateY(-2px);
   }
 
-  /* Indicator dot */
-  .indicator-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--bg-accent-dark);
-    transition: var(--transition-ease);
-  }
-
+  /* Indicator dot - ホバー/アクティブ時のスタイルのみ */
   .nav-item:hover .indicator-dot,
   .nav-item.active .indicator-dot {
     background: var(--ceramic-light);

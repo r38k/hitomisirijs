@@ -11,6 +11,7 @@ import preact from '@astrojs/preact';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://r38k.dev',
+  trailingSlash: 'never',
   integrations: [mdx(), sitemap(), preact()],
   adapter: cloudflare({
     platformProxy: {

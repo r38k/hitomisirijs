@@ -1,0 +1,164 @@
+---
+import FormattedDate from "../FormattedDate.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags?: string[];
+  href: string;
+}
+
+const { title, description, pubDate, tags = [], href } = Astro.props;
+---
+
+<a href={href} class="blog-card">
+  <div class="card-content">
+    <div class="card-header">
+      <h3 class="card-title">{title}</h3>
+      <p class="card-date">
+        <FormattedDate date={pubDate} />
+      </p>
+    </div>
+
+    <p class="card-description">{description}</p>
+
+    {tags.length > 0 && (
+      <div class="card-tags">
+        {tags.map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <div class="card-indicator">
+    <span class="indicator-dot"></span>
+  </div>
+</a>
+
+<style>
+  .blog-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md);
+    background: rgba(18, 18, 26, 0.6);
+    border: 1px solid var(--bg-accent-dark);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blog-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(212, 165, 116, 0.03) 0%,
+      transparent 50%
+    );
+    opacity: 0;
+    transition: var(--transition-ease);
+  }
+
+  .blog-card:hover {
+    border-color: var(--ceramic-dark);
+    transform: translateY(-2px);
+  }
+
+  .blog-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+
+  .card-title {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-tight);
+    transition: var(--transition-ease);
+  }
+
+  .blog-card:hover .card-title {
+    color: var(--text-ceramic);
+  }
+
+  .card-date {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    letter-spacing: var(--tracking-normal);
+    text-transform: uppercase;
+  }
+
+  .card-description {
+    margin: 0 0 var(--space-sm) 0;
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .tag {
+    padding: 2px 8px;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ceramic-light);
+    background: rgba(212, 165, 116, 0.1);
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    border-radius: 4px;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .card-indicator {
+    position: relative;
+    z-index: 1;
+    padding-left: var(--space-md);
+  }
+
+  /* Indicator dot - ホバー時のスタイルのみ */
+  .blog-card:hover .indicator-dot {
+    background: var(--ceramic-light);
+    box-shadow: var(--glow-ceramic-subtle);
+  }
+
+  @media (max-width: 720px) {
+    .blog-card {
+      padding: 1em;
+    }
+
+    .card-header {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .card-title {
+      font-size: 1.1em;
+    }
+  }
+</style>

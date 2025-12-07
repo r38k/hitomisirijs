@@ -82,6 +82,29 @@
   --leading-relaxed: 2.2;
 }
 
+/* === 共通コンポーネントスタイル === */
+
+/* Indicator Dot - インタラクティブなドットインジケーター */
+.indicator-dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bg-accent-dark);
+  transition: var(--transition-ease);
+}
+
+.indicator-dot--sm {
+  width: 4px;
+  height: 4px;
+}
+
+.indicator-dot.active,
+.indicator-dot--active {
+  background: var(--ceramic-light);
+  box-shadow: var(--glow-ceramic);
+}
+
 /* ダークモード（このテーマは既にダーク） */
 html.dark {
   /* 既存のダークモード設定を保持 */

@@ -1,35 +1,13 @@
 ---
-import AboutHeroImage from "../assets/blog-placeholder-about.jpg";
 import Layout from "../layouts/BlogPost.astro";
 
 const pageTitle = "About";
-
-const identity = {
-  firstName: "サラ",
-  country: "カナダ",
-  occupation: "技術ライター",
-  hobbies: ["写真", "バードウォッチング", "野球"],
-};
-
-const skills = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "React",
-  "Astro",
-  "ドキュメントの執筆",
-];
 ---
 
 <Layout
   title={pageTitle}
   description="Lorem ipsum dolor sit amet"
   pubDate={new Date("August 08 2021")}
-  heroImage={AboutHeroImage}
 >
   <p>Hitomisiri.js</p>
-
-  
 </Layout>
-
-  

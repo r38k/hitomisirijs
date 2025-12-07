@@ -4,6 +4,9 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+/* Import centralized theme variables */
+@import './theme.css';
+
 html.dark {
     background-color: #0d0950;
     color: #fff;

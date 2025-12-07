@@ -1,85 +1,290 @@
 ---
 import { SITE_TITLE } from "../../consts";
-import HeaderLink from "./HeaderLink.astro";
+
+const navItems = [
+  { id: 'home', label: 'Home', jp: 'ホーム', href: '/' },
+  { id: 'blog', label: 'Blog', jp: '記録', href: '/blog' },
+  { id: 'about', label: 'About', jp: '人物', href: '/about' },
+];
+
+const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
 ---
 
-<header>
-  <nav>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
-    <div class="internal-links">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/about">About</HeaderLink>
+<header class="site-header">
+  {/* Subtle grain texture overlay */}
+  <div class="grain-overlay"></div>
+
+  {/* Floating ceramic form - abstract pottery shape */}
+  <div class="ceramic-shape">
+    <svg viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="ceramic" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="var(--ceramic-light)" />
+          <stop offset="50%" stop-color="var(--ceramic-medium)" />
+          <stop offset="100%" stop-color="var(--ceramic-dark)" />
+        </linearGradient>
+      </defs>
+      {/* Organic pottery-like shape */}
+      <path
+        d="M100 20
+           C140 20, 170 50, 175 90
+           C180 130, 160 160, 140 175
+           C120 190, 80 190, 60 175
+           C40 160, 20 130, 25 90
+           C30 50, 60 20, 100 20Z"
+        fill="url(#ceramic)"
+      />
+      {/* Inner hollow - like a bowl */}
+      <ellipse
+        cx="100"
+        cy="70"
+        rx="45"
+        ry="25"
+        fill="var(--bg-primary)"
+        opacity="0.5"
+      />
+    </svg>
+  </div>
+
+  {/* Header content */}
+  <div class="header-content">
+    {/* Logo / Title area */}
+    <div class="logo">
+      <h1>
+        <a href="/">{SITE_TITLE}</a>
+      </h1>
     </div>
-    <div class="social-links">
-      <a href="https://m.webtoo.ls/@astro" target="_blank">
-        <span class="sr-only">Follow Astro on Mastodon</span>
-        <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-          ><path
-            fill="currentColor"
-            d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"
-          ></path></svg
-        >
-      </a>
-      <a href="https://twitter.com/astrodotbuild" target="_blank">
-        <span class="sr-only">Follow Astro on Twitter</span>
-        <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
-          <path
-            fill="currentColor"
-            d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-          ></path>
-        </svg>
-      </a>
-      <a href="https://github.com/withastro/astro" target="_blank">
-        <span class="sr-only">Go to Astro's GitHub repo</span>
-        <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
-          <path
-            fill="currentColor"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-          ></path>
-        </svg>
-      </a>
-    </div>
-  </nav>
+
+    {/* Navigation */}
+    <nav class="navigation">
+      {navItems.map((item) => {
+        const subpath = pathname.match(/[^\/]+/g);
+        const isActive = item.href === pathname || item.href === '/' + (subpath?.[0] || '');
+
+        return (
+          <a
+            href={item.href}
+            class:list={['nav-item', { active: isActive }]}
+            data-jp={item.jp}
+          >
+            {/* Tech indicator dot */}
+            <span class="indicator-dot"></span>
+
+            <span class="label">{item.label}</span>
+
+            {/* Japanese subtitle - appears on hover */}
+            <span class="jp-label">{item.jp}</span>
+          </a>
+        );
+      })}
+    </nav>
+  </div>
+
+  {/* Decorative tech line */}
+  <div class="tech-line">
+    {/* Glowing accent point */}
+    <div class="accent-point"></div>
+  </div>
 </header>
+
 <style>
-  header {
-    margin: 0;
-    padding: 0 1em;
-    background: white;
-    box-shadow: 0 2px 8px rgba(var(--black), 5%);
-  }
-  h2 {
-    margin: 0;
-    font-size: 1em;
+  .site-header {
+    position: relative;
+    padding: var(--space-md) var(--space-xl);
+    background: var(--gradient-bg);
+    font-family: var(--font-mono);
+    overflow: hidden;
+    min-height: 120px;
   }
 
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
+  /* Grain texture overlay */
+  .grain-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: var(--opacity-grain);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
   }
-  nav {
+
+  /* Floating ceramic shape */
+  .ceramic-shape {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    opacity: var(--opacity-ceramic-shape);
+    pointer-events: none;
+  }
+
+  .ceramic-shape svg {
+    width: 100%;
+    height: 100%;
+    filter: var(--blur-subtle);
+  }
+
+  /* Header content layout */
+  .header-content {
+    position: relative;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: flex-start;
+    z-index: 1;
   }
-  nav a {
-    padding: 1em 0.5em;
-    color: var(--black);
-    border-bottom: 4px solid transparent;
-    text-decoration: none;
-  }
-  nav a.active {
-    text-decoration: none;
-    border-bottom-color: var(--accent);
-  }
-  .social-links,
-  .social-links a {
+
+  /* Logo / Title */
+  .logo {
     display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
   }
+
+  .logo h1 {
+    margin: 0;
+    font-size: var(--text-md);
+    font-weight: 400;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .logo h1 a {
+    color: var(--text-ceramic);
+    text-decoration: none;
+    transition: var(--transition-ease);
+  }
+
+  .logo h1 a:hover {
+    opacity: var(--opacity-hover);
+  }
+
+  /* Navigation */
+  .navigation {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .nav-item {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: var(--transition-smooth);
+    position: relative;
+  }
+
+  .nav-item:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Indicator dot */
+  .indicator-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--bg-accent-dark);
+    transition: var(--transition-ease);
+  }
+
+  .nav-item:hover .indicator-dot,
+  .nav-item.active .indicator-dot {
+    background: var(--ceramic-light);
+    box-shadow: var(--glow-ceramic);
+  }
+
+  /* Label */
+  .label {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: var(--tracking-normal);
+    text-transform: uppercase;
+    transition: var(--transition-ease);
+  }
+
+  .nav-item:hover .label,
+  .nav-item.active .label {
+    color: var(--text-primary);
+  }
+
+  /* Japanese subtitle */
+  .jp-label {
+    font-size: var(--text-xs);
+    color: var(--text-ceramic);
+    letter-spacing: var(--tracking-wide);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: var(--transition-smooth);
+    position: absolute;
+    top: 100%;
+    margin-top: 6px;
+    white-space: nowrap;
+  }
+
+  .nav-item:hover .jp-label {
+    opacity: var(--opacity-hover);
+    transform: translateY(0);
+  }
+
+  /* Decorative tech line */
+  .tech-line {
+    position: absolute;
+    bottom: var(--space-md);
+    left: var(--space-xl);
+    right: var(--space-xl);
+    height: 1px;
+    background: var(--gradient-line);
+  }
+
+  /* Glowing accent point */
+  .accent-point {
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    background: var(--ceramic-light);
+    border-radius: 50%;
+    box-shadow: var(--glow-ceramic-subtle);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Responsive design */
   @media (max-width: 720px) {
-    .social-links {
-      display: none;
+    .site-header {
+      padding: var(--space-md) 1em;
+    }
+
+    .header-content {
+      flex-direction: column;
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+
+    .navigation {
+      gap: var(--space-md);
+    }
+
+    .ceramic-shape {
+      width: 200px;
+      height: 200px;
+    }
+
+    .tech-line {
+      left: 1em;
+      right: 1em;
+    }
+
+    .jp-label {
+      display: none; /* Hide Japanese labels on mobile for cleaner look */
     }
   }
 </style>

@@ -1,0 +1,90 @@
+/**
+ * Centralized Theme Design Tokens
+ *
+ * このファイルでは、サイト全体のデザイントークン（色、フォント、スペーシングなど）を定義します
+ */
+
+:root {
+  /* === カラーパレット === */
+
+  /* 背景色 - ダークグラデーション */
+  --bg-primary: #0a0a0b;
+  --bg-secondary: #12121a;
+  --bg-tertiary: #1a1a24;
+  --bg-accent-dark: #2a2a3a;
+
+  /* 陶器色（セラミック）- メインアクセント */
+  --ceramic-light: #d4a574;
+  --ceramic-medium: #c4956a;
+  --ceramic-dark: #8b7355;
+
+  /* テキストカラー */
+  --text-primary: #e8e8f0;
+  --text-secondary: #5a5a6a;
+  --text-muted: #4a4a5a;
+  --text-ceramic: var(--ceramic-light);
+
+  /* === タイポグラフィ === */
+
+  --font-mono: "Courier New", "Courier", monospace;
+  --font-sans: "Atkinson", sans-serif;
+
+  /* フォントサイズ */
+  --text-xs: 9px;
+  --text-sm: 11px;
+  --text-base: 13px;
+  --text-md: 14px;
+  --text-lg: 20px;
+
+  /* レタースペーシング */
+  --tracking-tight: 0.05em;
+  --tracking-normal: 0.15em;
+  --tracking-wide: 0.2em;
+  --tracking-wider: 0.3em;
+
+  /* === スペーシング === */
+
+  --space-xs: 4px;
+  --space-sm: 6px;
+  --space-md: 40px;
+  --space-lg: 48px;
+  --space-xl: 60px;
+  --space-2xl: 120px;
+
+  /* === グラデーション === */
+
+  --gradient-bg: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+  --gradient-line: linear-gradient(90deg, transparent 0%, var(--bg-accent-dark) 20%, var(--bg-accent-dark) 80%, transparent 100%);
+  --gradient-ceramic: linear-gradient(135deg, var(--ceramic-light) 0%, var(--ceramic-medium) 50%, var(--ceramic-dark) 100%);
+
+  /* === エフェクト === */
+
+  /* グロー効果 */
+  --glow-ceramic: 0 0 12px var(--ceramic-light), 0 0 24px rgba(212, 165, 116, 0.3);
+  --glow-ceramic-subtle: 0 0 8px var(--ceramic-light), 0 0 16px rgba(212, 165, 116, 0.4);
+
+  /* ブラー */
+  --blur-subtle: blur(1px);
+
+  /* === トランジション === */
+
+  --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-ease: all 0.4s ease;
+
+  /* === その他 === */
+
+  /* オパシティ */
+  --opacity-grain: 0.03;
+  --opacity-ceramic-shape: 0.06;
+  --opacity-hover: 0.7;
+
+  /* 行の高さ */
+  --leading-relaxed: 2.2;
+}
+
+/* ダークモード（このテーマは既にダーク） */
+html.dark {
+  /* 既存のダークモード設定を保持 */
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}

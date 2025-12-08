@@ -3,6 +3,11 @@ import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer/Footer.astro";
 import Header from "../components/Header/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+
+const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
+const pathSegments = pathname.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
+const displayPath = pathSegments.length === 0 ? '~' : `~/${pathSegments[0]}`;
+const branch = pathSegments.length >= 2 ? pathSegments[pathSegments.length - 1] : 'main';
 ---
 
 <!doctype html>
@@ -12,6 +17,13 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
   </head>
   <body>
     <Header />
+    <div class="current-directory">
+      <span class="user">visitor@hitomisiri</span><span class="separator">:</span>{pathSegments.length === 0 ? (
+        <><span class="path">~</span><span class="prompt">$</span></>
+      ) : (
+        <><span class="path">{displayPath}</span><span class="branch">#{branch}</span><span class="prompt">$</span></>
+      )}
+    </div>
     <main>
       <slot />
     </main>
@@ -28,5 +40,36 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
   main {
     flex: 1;
+    position: relative;
+  }
+
+  .current-directory {
+    display: flex;
+    align-items: center;
+    font-size: var(--text-md);
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    padding: 0.5em 1em;
+  }
+
+  .current-directory .user {
+    color: var(--accent-green, #98c379);
+  }
+
+  .current-directory .separator {
+    color: var(--text-secondary);
+  }
+
+  .current-directory .path {
+    color: var(--accent-blue, #61afef);
+  }
+
+  .current-directory .branch {
+    color: var(--accent-magenta, #c678dd);
+  }
+
+  .current-directory .prompt {
+    color: var(--text-secondary);
+    margin-left: 0.2em;
   }
 </style>

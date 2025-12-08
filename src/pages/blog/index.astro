@@ -1,9 +1,13 @@
 ---
 import { getCollection } from "astro:content";
 import BlogCard from "../../components/Card/BlogCard.astro";
+import RssButton from "../../components/Button/rss.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const posts = (await getCollection("blog")).sort(
+const posts = (await getCollection("blog", ({ data }) => {
+  // 本番環境では draft: true の記事を除外
+  return import.meta.env.PROD ? !data.draft : true;
+})).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
@@ -27,13 +31,21 @@ const posts = (await getCollection("blog")).sort(
         ))
       }
     </section>
+    <div class="blog-footer">
+      <RssButton />
+    </div>
   </main>
 </BaseLayout>
-
 <style>
   .blog-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .blog-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
   }
 </style>

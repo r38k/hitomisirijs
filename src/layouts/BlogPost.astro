@@ -48,6 +48,32 @@ const { title, description, pubDate, updatedDate, rawContent } = Astro.props;
     margin: auto;
     padding: 1em;
     color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .prose :global(h1) {
+    font-size: 1.75em;
+  }
+  .prose :global(h2) {
+    font-size: 1.5em;
+  }
+  .prose :global(h3) {
+    font-size: 1.25em;
+  }
+  .prose :global(h4) {
+    font-size: 1.1em;
+  }
+  .prose :global(h5) {
+    font-size: 1em;
+  }
+  .prose :global(blockquote) {
+    font-size: 1em;
+  }
+  .prose :global(code) {
+    font-size: 0.9em;
+  }
+  .prose :global(pre) {
+    font-size: 0.875em;
   }
   .title {
     position: relative;

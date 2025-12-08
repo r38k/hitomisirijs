@@ -9,8 +9,8 @@
 
 /* Additional legacy variables for blog post styles */
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
+	--accent: #77a6ff;
+	--accent-dark: #0044ff;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
@@ -61,7 +61,7 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: rgb(var(--white));
 	line-height: 1.2;
 }
 h1 {
@@ -87,7 +87,7 @@ a {
 	color: var(--accent);
 }
 a:hover {
-	color: var(--accent);
+	color: var(--accent-dark);
 }
 p {
 	margin-bottom: 1em;
@@ -112,7 +112,7 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: rgb(var(--gray-dark));
 	border-radius: 2px;
 }
 pre {

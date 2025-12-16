@@ -3,6 +3,7 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
+import remarkLinkCard from 'remark-link-card-plus';
 
 import cloudflare from '@astrojs/cloudflare';
 
@@ -19,4 +20,15 @@ export default defineConfig({
     },
     imageService: "compile"
   }),
+  markdown: {
+    remarkPlugins: [
+      [
+        remarkLinkCard, {
+          cache: true,
+          shortenUrl: true,
+          thumbnailPosition: 'right'
+        }
+      ]
+    ]
+  }
 });

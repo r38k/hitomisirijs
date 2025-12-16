@@ -158,3 +158,104 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+/* === Link Card (remark-link-card-plus) === */
+
+.remark-link-card-plus__container {
+	margin: 1.5em 0;
+}
+
+.remark-link-card-plus__card {
+	display: flex;
+	align-items: stretch;
+	text-decoration: none;
+	background: var(--bg-tertiary);
+	border: 1px solid var(--bg-accent-dark);
+	border-radius: 8px;
+	overflow: hidden;
+	transition: var(--transition-ease);
+}
+
+.remark-link-card-plus__card:hover {
+	border-color: var(--ceramic-dark);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.remark-link-card-plus__main {
+	flex: 1;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-width: 0;
+}
+
+.remark-link-card-plus__content {
+	flex: 1;
+}
+
+.remark-link-card-plus__title {
+	font-size: 1rem;
+	font-weight: 700;
+	color: var(--text-primary);
+	margin: 0 0 8px 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.remark-link-card-plus__description {
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	margin: 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.remark-link-card-plus__meta {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 12px;
+}
+
+.remark-link-card-plus__favicon {
+	width: 16px;
+	height: 16px;
+	border-radius: 2px;
+}
+
+.remark-link-card-plus__url {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.remark-link-card-plus__thumbnail {
+	flex-shrink: 0;
+	width: 200px;
+}
+
+.remark-link-card-plus__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 0;
+}
+
+/* モバイル対応 */
+@media (max-width: 720px) {
+	.remark-link-card-plus__card {
+		flex-direction: column-reverse;
+	}
+
+	.remark-link-card-plus__thumbnail {
+		width: 100%;
+		height: 160px;
+	}
+}

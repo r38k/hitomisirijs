@@ -4,25 +4,51 @@ import Footer from "../components/Footer/Footer.astro";
 import Header from "../components/Header/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
-const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
-const pathSegments = pathname.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
-const displayPath = pathSegments.length === 0 ? '~' : `~/${pathSegments[0]}`;
-const branch = pathSegments.length >= 2 ? pathSegments[pathSegments.length - 1] : 'main';
+const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
+const pathSegments = pathname
+  .replace(/^\/|\/$/g, "")
+  .split("/")
+  .filter(Boolean);
+const displayPath = pathSegments.length === 0 ? "~" : `~/${pathSegments[0]}`;
+const branch =
+  pathSegments.length >= 2 ? pathSegments[pathSegments.length - 1] : "main";
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ja">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={title} description={description} />
   </head>
   <body>
     <Header />
     <div class="current-directory">
-      <span class="user">visitor@hitomisiri</span><span class="separator">:</span>{pathSegments.length === 0 ? (
-        <><span class="path">~</span><span class="prompt">$</span></>
-      ) : (
-        <><span class="path">{displayPath}</span><span class="branch">#{branch}</span><span class="prompt">$</span></>
-      )}
+      <span class="user">visitor@hitomisiri</span><span class="separator"
+        >:</span
+      >{
+        pathSegments.length === 0 ? (
+          <>
+            <>
+              <span class="path">~</span>
+              <span class="prompt">$</span>
+            </>
+          </>
+        ) : (
+          <>
+            <>
+              <span class="path">{displayPath}</span>
+              <span class="branch">#{branch}</span>
+              <span class="prompt">$</span>
+            </>
+          </>
+        )
+      }
     </div>
     <main>
       <slot />

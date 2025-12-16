@@ -10,18 +10,34 @@ type Props = CollectionEntry<"blog">["data"] & {
 const { title, description, pubDate, updatedDate, rawContent } = Astro.props;
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description}>
   <article>
     <div class="prose">
       <div class="title">
-        {rawContent && (
-          <button class="copy-btn" data-content={rawContent} title="Markdownをコピー">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-          </button>
-        )}
+        {
+          rawContent && (
+            <button
+              class="copy-btn"
+              data-content={rawContent}
+              title="Markdownをコピー"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+            </button>
+          )
+        }
         <h1>{title}</h1>
         <p>{description}</p>
         <div class="date">
@@ -97,7 +113,7 @@ const { title, description, pubDate, updatedDate, rawContent } = Astro.props;
   .prose hr {
     border-color: var(--bg-accent-dark);
   }
-.copy-btn {
+  .copy-btn {
     position: absolute;
     top: 0;
     left: 0;
@@ -107,7 +123,9 @@ const { title, description, pubDate, updatedDate, rawContent } = Astro.props;
     border: 1px solid var(--bg-accent-dark);
     border-radius: 4px;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,14 +140,14 @@ const { title, description, pubDate, updatedDate, rawContent } = Astro.props;
 </style>
 
 <script>
-  document.querySelectorAll('.copy-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const content = btn.getAttribute('data-content');
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const content = btn.getAttribute("data-content");
       if (content) {
         await navigator.clipboard.writeText(content);
-        btn.classList.add('copied');
+        btn.classList.add("copied");
         setTimeout(() => {
-          btn.classList.remove('copied');
+          btn.classList.remove("copied");
         }, 2000);
       }
     });

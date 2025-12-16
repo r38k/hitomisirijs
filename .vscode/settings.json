@@ -3,5 +3,10 @@
 		"wrangler.json": "jsonc"
 	},    // UI Setting:
     // TypeScript (Native Preview) > Use Tsgo
-    "typescript.experimental.useTsgo": true
+    "typescript.experimental.useTsgo": true,
+	"eslint.validate": [
+		"astro",
+		"typescript",
+		"typescriptreact",
+	]
 }

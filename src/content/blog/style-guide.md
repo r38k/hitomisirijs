@@ -3,6 +3,7 @@ title: 'Markdown Style Guide'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
 pubDate: 2025-12-08 22:00
 tags: ["guide"]
+draft: true
 ---
 
 <https://github.com/withastro/astro/blob/main/examples/blog/src/content/blog/markdown-style-guide.md>

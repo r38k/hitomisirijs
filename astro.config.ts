@@ -7,6 +7,7 @@ import remarkLinkCard from 'remark-link-card-plus';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings, { type Build } from 'rehype-autolink-headings';
 import remarkCustomHeaderId from 'remark-custom-header-id';
+import remarkBreaks from 'remark-breaks'
 
 export default defineConfig({
   site: 'https://r38k.dev',
@@ -29,6 +30,7 @@ export default defineConfig({
         },
       ],
         remarkCustomHeaderId,
+        remarkBreaks
     ],
     rehypePlugins: [
       rehypeSlug,
